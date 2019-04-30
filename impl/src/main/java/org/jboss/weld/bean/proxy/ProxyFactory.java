@@ -819,11 +819,11 @@ public class ProxyFactory<T> implements PrivilegedAction<T> {
             Method getInstanceClassMethod = TargetInstanceProxy.class.getMethod("weld_getTargetClass");
 
             MethodInformation getInstanceMethodInfo = new RuntimeMethodInformation(getInstanceMethod);
-            createInterceptorBody(proxyClassType.addMethod(getInstanceMethod), getInstanceMethodInfo, staticConstructor);
+            createInterceptorBody(proxyClassType.addMethod(getInstanceMethod, false), getInstanceMethodInfo, staticConstructor);
 
 
             MethodInformation getInstanceClassMethodInfo = new RuntimeMethodInformation(getInstanceClassMethod);
-            createInterceptorBody(proxyClassType.addMethod(getInstanceClassMethod), getInstanceClassMethodInfo, staticConstructor);
+            createInterceptorBody(proxyClassType.addMethod(getInstanceClassMethod, false), getInstanceClassMethodInfo, staticConstructor);
 
             Method setMethodHandlerMethod = ProxyObject.class.getMethod("weld_setHandler", MethodHandler.class);
             generateSetMethodHandlerBody(proxyClassType.addMethod(setMethodHandlerMethod));

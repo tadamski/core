@@ -479,14 +479,14 @@ public class InterceptedSubclassFactory<T> extends ProxyFactory<T> {
             }
             Method getInstanceMethod = TargetInstanceProxy.class.getMethod("weld_getTargetInstance");
             Method getInstanceClassMethod = TargetInstanceProxy.class.getMethod("weld_getTargetClass");
-            generateGetTargetInstanceBody(proxyClassType.addMethod(getInstanceMethod));
-            generateGetTargetClassBody(proxyClassType.addMethod(getInstanceClassMethod));
+            generateGetTargetInstanceBody(proxyClassType.addMethod(getInstanceMethod, false));
+            generateGetTargetClassBody(proxyClassType.addMethod(getInstanceClassMethod, false));
 
             Method setMethodHandlerMethod = ProxyObject.class.getMethod("weld_setHandler", MethodHandler.class);
-            generateSetMethodHandlerBody(proxyClassType.addMethod(setMethodHandlerMethod));
+            generateSetMethodHandlerBody(proxyClassType.addMethod(setMethodHandlerMethod, false));
 
             Method getMethodHandlerMethod = ProxyObject.class.getMethod("weld_getHandler");
-            generateGetMethodHandlerBody(proxyClassType.addMethod(getMethodHandlerMethod));
+            generateGetMethodHandlerBody(proxyClassType.addMethod(getMethodHandlerMethod, false));
        } catch (Exception e) {
             throw new WeldException(e);
         }
